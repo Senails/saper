@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Gameblock from '../components/GameBlock/GameBlock';
-import TopUI from '../components/topUI/topUI'
+import TopUI from '../components/TopUI/TopUI'
 import { setVar, startgame } from '../redux/Slices/GameSlice';
 import { RootState } from '../redux/store';
 
@@ -22,11 +22,6 @@ export default function App():JSX.Element {
     }
 
     let select = variant;
-
-
-
-
-   
 
 
     return <>
