@@ -1,0 +1,52 @@
+.gamebox {
+    box-sizing: border-box;
+    width: 900px;
+    height: 480px;
+    margin: 0 auto;
+    background-image: url('../../assets/grass_template2_0.jpg');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-radius: 5px;
+    position: relative;
+    .conteiner {
+        .stroka {
+            display: flex;
+            .minibox {
+                box-sizing: border-box;
+                width: 30px;
+                height: 30px;
+                border: 1px solid white;
+                overflow: hidden;
+                &:nth-child(1) {
+                    border-left: 2px solid white;
+                }
+                &:nth-last-child(1) {
+                    border-right: 2px solid white;
+                }
+            }
+            &:nth-child(1) {
+                .minibox {
+                    &:nth-child(1) {
+                        border-radius: 5px 0 0 0;
+                    }
+                    &:nth-last-child(1) {
+                        border-radius: 0 5px 0 0;
+                    }
+                    border-top: 2px solid white;
+                }
+            }
+            &:nth-last-child(1) {
+                .minibox {
+                    &:nth-child(1) {
+                        border-radius: 0 0 0 5px;
+                    }
+                    &:nth-last-child(1) {
+                        border-radius: 0 0 5px 0;
+                    }
+                    border-bottom: 2px solid white;
+                }
+            }
+        }
+    }
+}

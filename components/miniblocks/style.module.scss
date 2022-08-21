@@ -1,0 +1,77 @@
+@mixin forall {
+    width: 100%;
+    height: 100%;
+    font-family: 'Inter';
+    font-weight: 900;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    background-color: #4a312a;
+    &.lastbomb {
+        background-color: red;
+    }
+}
+
+.bomb {
+    @include forall;
+    background-image: url('../../assets/bomb.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.number {
+    @include forall;
+}
+
+.number1 {
+    @include forall;
+    color: #4891fe;
+}
+
+.number2 {
+    @include forall;
+    color: #5be92b;
+}
+
+.number3 {
+    @include forall;
+    color: #fb8130;
+}
+
+.number4 {
+    @include forall;
+    color: #f8ba1d;
+}
+
+.number5 {
+    @include forall;
+    color: #7bffd7;
+}
+
+.number6 {
+    @include forall;
+    color: #41d3ff;
+}
+
+.number7 {
+    @include forall;
+    color: #a055fd;
+}
+
+.number8 {
+    @include forall;
+    color: #fc63f7;
+}
+
+.secretz {
+    width: 100%;
+    height: 100%;
+    background-image: url('../../assets/flag.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.secrets {
+    width: 100%;
+    height: 100%;
+}
