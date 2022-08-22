@@ -2,14 +2,11 @@
     box-sizing: border-box;
     width: 900px;
     height: 480px;
-    margin: 0 auto;
-    background-image: url('../../assets/grass_template2_0.jpg');
-    background-size: cover;
-    background-position: center;
     overflow: hidden;
     border-radius: 5px;
-    position: relative;
-    border: 4px solid red;
+    position: absolute;
+    left: calc(50% - 480px);
+    top: calc(50% - 240px);
     .conteiner {
         .stroka {
             display: flex;
@@ -17,7 +14,7 @@
                 box-sizing: border-box;
                 width: 30px;
                 height: 30px;
-                border: 1px solid white;
+                border: 1px solid rgb(255, 255, 255);
                 overflow: hidden;
                 &:nth-child(1) {
                     border-left: 2px solid white;
@@ -49,5 +46,18 @@
                 }
             }
         }
+    }
+    .backimg {
+        position: absolute;
+        z-index: -1;
+        background-image: url('../../assets/grass_template2_0.jpg');
+        background-size: cover;
+        background-position: center;
+        @media (max-width: 1000px) {
+            transform: rotate(-90deg);
+        }
+    }
+    @media (max-width: 1000px) {
+        transform: rotate(90deg);
     }
 }

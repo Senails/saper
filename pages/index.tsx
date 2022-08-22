@@ -13,7 +13,8 @@ import styles from './index.module.scss'
 export default function App():JSX.Element {
     let {variant, statusgame} = useSelector((state: RootState)=>state.game)
     let dispatch = useDispatch();
-    let albox = useRef<HTMLDivElement>()
+    let albox = useRef<HTMLDivElement>();
+    let boxforgame = useRef<HTMLDivElement>();
 
 
     const selecthandler = (num:number)=>{
@@ -28,12 +29,14 @@ export default function App():JSX.Element {
     useEffect(()=>{
         let height = window.innerHeight;
         albox.current.style.height = height-1+'px';
+        boxforgame.current.style.height = height-1+'px';
 
         window.addEventListener('resize',resise);
 
         function resise(){
             let height = window.innerHeight;
             albox.current.style.height = height-1+'px';
+            boxforgame.current.style.height = height-1+'px';
         }
 
 
@@ -42,7 +45,21 @@ export default function App():JSX.Element {
         }
     },[]);
 
-
+    useEffect(()=>{
+        let height = window.innerHeight;
+        if (statusgame!=='wait'){
+            if (window.innerWidth<1000){
+                if (variant===3){
+                    console.log(1)
+                    albox.current.style.height = '1200px';
+                    boxforgame.current.style.height = '1200px';
+                }
+            }
+        }else{
+            albox.current.style.height = height-1+'px';
+            boxforgame.current.style.height = height-1+'px'; 
+        }
+    },[statusgame]);
 
     return <>
     <div ref={albox} className={styles.allbox}>
@@ -60,12 +77,7 @@ export default function App():JSX.Element {
                 </div>
             </div>
             <div className={styles.simplebox}></div>
-
-
-
-
-
-            <div className={styles.boxforgame}>
+            <div ref={boxforgame} className={styles.boxforgame}>
                 {statusgame!=='wait' && <Gameblock/>}
             </div>
         </div>

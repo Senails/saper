@@ -46,7 +46,6 @@ export default function TopUI():JSX.Element{
     }
 
     const exitgamehandler = () =>{
-        console.log(1)
         dispatch(exitgame());
     }
 
