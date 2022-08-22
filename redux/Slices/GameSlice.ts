@@ -153,9 +153,12 @@ export const GameSlice = createSlice({
                     state.verdict='win';
                 }
             }
+        },
+        exitgame(state){
+            state.statusgame = 'wait';
         }
     },
   })
 
-  export const { setVar, startgame, usingflag , checkfragment } = GameSlice.actions;
+  export const { setVar, startgame, usingflag , checkfragment, exitgame } = GameSlice.actions;
   export default GameSlice.reducer

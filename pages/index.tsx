@@ -13,6 +13,7 @@ import styles from './index.module.scss'
 export default function App():JSX.Element {
     let {variant, statusgame} = useSelector((state: RootState)=>state.game)
     let dispatch = useDispatch();
+    let albox = useRef<HTMLDivElement>()
 
 
     const selecthandler = (num:number)=>{
@@ -24,12 +25,29 @@ export default function App():JSX.Element {
 
     let select = variant;
 
+    useEffect(()=>{
+        let height = window.innerHeight;
+        albox.current.style.height = height-1+'px';
+
+        window.addEventListener('resize',resise);
+
+        function resise(){
+            let height = window.innerHeight;
+            albox.current.style.height = height-1+'px';
+        }
+
+
+        return ()=>{
+            window.removeEventListener('resize',resise);
+        }
+    },[]);
+
+
 
     return <>
-    <div className={styles.allbox}>
+    <div ref={albox} className={styles.allbox}>
         <Topux/>
-
-        <div className={styles.conteiner}>
+        <div className={styles.conteiner+` ${statusgame!=='wait'?  styles.game : ''}`}>
             <div className={styles.firstslide}>
                 <div className={styles.box}>
                     <div className={styles.img}></div>
@@ -41,8 +59,15 @@ export default function App():JSX.Element {
                     <h1 className={styles.button} onClick={startgamehandler}>Play</h1>
                 </div>
             </div>
+            <div className={styles.simplebox}></div>
 
-          {statusgame!=='wait' && <Gameblock/>}
+
+
+
+
+            <div className={styles.boxforgame}>
+                {statusgame!=='wait' && <Gameblock/>}
+            </div>
         </div>
     </div>
     </>

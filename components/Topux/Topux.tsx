@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { exitgame, startgame } from '../../redux/Slices/GameSlice';
 import { RootState } from '../../redux/store'
 import { timeTostring } from '../../utils/timetosting';
 import styles from './style.module.scss'
@@ -11,7 +12,10 @@ export default function TopUI():JSX.Element{
     let gamesatus = useSelector((state: RootState)=>state.game.statusgame);
     let bombcount = useSelector((state: RootState)=>state.game.bombcount);
     let flagcount = useSelector((state: RootState)=>state.game.flagcount);
+    let dispatch = useDispatch();
+    
     let timer = useRef<HTMLParagraphElement>();
+    let restart = useRef<HTMLDivElement>()
 
     let dopclass='';
     if (gamesatus!=='wait') dopclass=styles.active;
@@ -32,6 +36,20 @@ export default function TopUI():JSX.Element{
         }
     },[gamesatus]);
 
+    const restartgamehandler = ()=>{
+        dispatch(startgame());
+        restart.current.classList.add(styles.active);
+        time = 0;
+        setTimeout(()=>{
+            restart.current.classList.remove(styles.active)
+        },500);
+    }
+
+    const exitgamehandler = () =>{
+        console.log(1)
+        dispatch(exitgame());
+    }
+
 
     return <div className={styles.toppanel+' '+dopclass}>
         <div>
@@ -41,5 +59,10 @@ export default function TopUI():JSX.Element{
         <div>
             <p ref={timer}>00:00</p>
         </div>
+
+        <div onClick={exitgamehandler} className={styles.exit}></div>
+        <div ref={restart} onClick={restartgamehandler} className={styles.restart}></div>
+
     </div>
 }
+

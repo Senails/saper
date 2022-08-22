@@ -5,7 +5,7 @@
     z-index: 5;
     display: flex;
     justify-content: space-between;
-    top: -50px;
+    top: -150px;
     transition: 0.5s;
     &.active {
         top: 0px;
@@ -54,6 +54,36 @@
                 text-align: center;
                 //letter-spacing: 1px;
             }
+        }
+    }
+    .exit {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 60px;
+        left: 10px;
+        border-radius: 50%;
+        background-image: url('../../assets/exitact.png');
+        background-position: center;
+        background-size: contain;
+        &:hover {
+            transition: background-image 0.3s;
+            background-image: url('../../assets/exit.png');
+        }
+    }
+    .restart {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        border-radius: 50%;
+        background-image: url('../../assets/restart.png');
+        background-position: center;
+        background-size: contain;
+        &.active {
+            transition: transform 0.3s;
+            transform: rotate(360deg);
         }
     }
 }
