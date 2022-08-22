@@ -32,13 +32,21 @@ export default function App():JSX.Element {
         boxforgame.current.style.height = height-1+'px';
 
         window.addEventListener('resize',resise);
-
         function resise(){
             let height = window.innerHeight;
-            albox.current.style.height = height-1+'px';
-            boxforgame.current.style.height = height-1+'px';
-        }
 
+            if (statusgame!=='wait'){
+                if (window.innerWidth<1000){
+                    if (variant===3){
+                        albox.current.style.height = '1200px';
+                        boxforgame.current.style.height = '1200px';
+                    }
+                }
+            }else{
+                albox.current.style.height = height-1+'px';
+                boxforgame.current.style.height = height-1+'px';
+            }  
+        }
 
         return ()=>{
             window.removeEventListener('resize',resise);
@@ -50,7 +58,6 @@ export default function App():JSX.Element {
         if (statusgame!=='wait'){
             if (window.innerWidth<1000){
                 if (variant===3){
-                    console.log(1)
                     albox.current.style.height = '1200px';
                     boxforgame.current.style.height = '1200px';
                 }
