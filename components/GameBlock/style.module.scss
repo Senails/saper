@@ -7,6 +7,9 @@
     position: absolute;
     left: calc(50% - 480px);
     top: calc(50% - 240px);
+    background-image: url('../../assets/grass_template2_0.jpg');
+    background-size: cover;
+    background-position: center;
     .conteiner {
         .stroka {
             display: flex;
@@ -47,17 +50,8 @@
             }
         }
     }
-    .backimg {
-        position: absolute;
-        z-index: -1;
-        background-image: url('../../assets/grass_template2_0.jpg');
-        background-size: cover;
-        background-position: center;
-        @media (max-width: 1000px) {
-            transform: rotate(-90deg);
-        }
-    }
     @media (max-width: 1000px) {
+        background-image: url('../../assets/travav2.png');
         transform: rotate(90deg);
     }
 }

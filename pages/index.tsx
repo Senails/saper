@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState} from 'react'
+import { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Gameblock from '../components/GameBlock/GameBlock';
 import Topux from '../components/Topux/Topux'
@@ -25,51 +25,17 @@ export default function App():JSX.Element {
     }
 
     let select = variant;
+    let dopclass ='';
+    if (statusgame!=='wait' && variant===3){
+        dopclass=styles.forthreegame;
+    }
+    if (statusgame!=='wait' && variant===2){
+        dopclass=styles.fortwogame;
+    }
 
-    useEffect(()=>{
-        let height = window.innerHeight;
-        albox.current.style.height = height-1+'px';
-        boxforgame.current.style.height = height-1+'px';
-
-        window.addEventListener('resize',resise);
-        function resise(){
-            let height = window.innerHeight;
-
-            if (statusgame!=='wait'){
-                if (window.innerWidth<1000){
-                    if (variant===3){
-                        albox.current.style.height = '1200px';
-                        boxforgame.current.style.height = '1200px';
-                    }
-                }
-            }else{
-                albox.current.style.height = height-1+'px';
-                boxforgame.current.style.height = height-1+'px';
-            }  
-        }
-
-        return ()=>{
-            window.removeEventListener('resize',resise);
-        }
-    },[]);
-
-    useEffect(()=>{
-        let height = window.innerHeight;
-        if (statusgame!=='wait'){
-            if (window.innerWidth<1000){
-                if (variant===3){
-                    albox.current.style.height = '1200px';
-                    boxforgame.current.style.height = '1200px';
-                }
-            }
-        }else{
-            albox.current.style.height = height-1+'px';
-            boxforgame.current.style.height = height-1+'px'; 
-        }
-    },[statusgame]);
 
     return <>
-    <div ref={albox} className={styles.allbox}>
+    <div ref={albox} className={styles.allbox + ' ' + dopclass}>
         <Topux/>
         <div className={styles.conteiner+` ${statusgame!=='wait'?  styles.game : ''}`}>
             <div className={styles.firstslide}>
@@ -81,6 +47,12 @@ export default function App():JSX.Element {
                         <div className={select==3 ? styles.active : ''} onClick={()=>selecthandler(3)}>30x16</div>
                     </div>
                     <h1 className={styles.button} onClick={startgamehandler}>Play</h1>
+                </div>
+
+                <div className={styles.aboutme}>
+                    <a href="https://www.figma.com/file/9kKmWLx210GntuxqdihFbj/Untitled?node-id=0%3A1"><div></div></a>
+                    <a href="https://github.com/Senails/saper"><div></div></a>
+                    <a href="https://senails.github.io/Senails/"><div></div></a>
                 </div>
             </div>
             <div className={styles.simplebox}></div>

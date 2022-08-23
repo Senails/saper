@@ -25,19 +25,6 @@ export default function Gameblock():JSX.Element{
         gamebox.current.style.top=`calc(50% - ${num1*30/2}px)`;
         gamebox.current.style.left=`calc(50% - ${num2*30/2}px)`;
 
-        if (variant===3){
-            if (window.innerWidth<1000){
-                fon.current.style.height=`${num2*30}px`;
-                fon.current.style.width=`${num1*30}px`;
-                fon.current.style.top=`calc(50% - ${num2*30/2}px)`;
-                fon.current.style.left=`calc(50% - ${num1*30/2}px)`;
-            }
-        }else{
-            fon.current.style.height=`${num1*30}px`;
-            fon.current.style.width=`${num2*30}px`;
-            fon.current.style.top=`calc(50% - ${num1*30/2}px)`;
-            fon.current.style.left=`calc(50% - ${num2*30/2}px)`;
-        }
     },[field])
 
     function RightClickHandler(event:React.MouseEvent<HTMLDivElement>, index1:number , index2:number):void{
@@ -62,11 +49,7 @@ export default function Gameblock():JSX.Element{
         </div>
     })
 
-   // console.log('render')
-
-
     return <div ref={gamebox} className={style.gamebox}>
-        <div ref={fon} className={style.backimg}></div>
         <div className={style.conteiner}>
         {res}
         </div>
