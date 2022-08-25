@@ -44,13 +44,15 @@ export default function Gameblock({istouch}):JSX.Element{
 
         box.addEventListener("touchend",touchend);
         box.addEventListener("touchmove",touchmove);
+        window.addEventListener('touchstart',touchstart);
+
 
         function touchend(){
             let dateend = new Date();
             let difference = dateend.getTime()-datestart.getTime();
 
             if (difference<500){
-                if (difference<250){
+                if (difference<220){
                     dispatch(checkfragment({index1,index2}));
                 }else{
                     dispatch(usingflag({index1,index2}));
@@ -59,8 +61,8 @@ export default function Gameblock({istouch}):JSX.Element{
 
             box.removeEventListener("touchend",touchend);
             box.removeEventListener("touchmove",touchmove);
+            window.removeEventListener('touchstart',touchstart);
         }
-
         function touchmove(event:TouchEvent){
             let endtX = event.targetTouches[0].screenX;
             let endtY = event.targetTouches[0].screenY;
@@ -76,9 +78,16 @@ export default function Gameblock({istouch}):JSX.Element{
             if (res>=5){
                 box.removeEventListener("touchend",touchend);
                 box.removeEventListener("touchmove",touchmove);
+                window.removeEventListener('touchstart',touchstart);
             }
         }
-
+        function touchstart(event:TouchEvent){
+            if (event.touches.length>1){
+                box.removeEventListener("touchend",touchend);
+                box.removeEventListener("touchmove",touchmove);
+                window.removeEventListener('touchstart',touchstart);
+            }
+        }
     }
 
     let res = field.map((arr, index1)=>{
