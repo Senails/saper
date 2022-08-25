@@ -6,16 +6,11 @@ import { MiniBlock } from '../miniblocks/MiniBlock'
 import Verdict from '../Verdict/Verdict'
 import style from './style.module.scss'
 
-
-
-
-export default function Gameblock():JSX.Element{
+export default function Gameblock({istouch}):JSX.Element{
     let field = useSelector((state:RootState)=> state.game.field);
-    let variant = useSelector((state:RootState)=> state.game.variant);
     let dispatch = useDispatch();
 
     let gamebox = useRef<HTMLDivElement>();
-    let fon = useRef<HTMLDivElement>();
 
     useEffect(()=>{
         let num1 = field.length;
@@ -29,10 +24,35 @@ export default function Gameblock():JSX.Element{
 
     function RightClickHandler(event:React.MouseEvent<HTMLDivElement>, index1:number , index2:number):void{
         event.preventDefault();
-        dispatch(usingflag({index1,index2}))
+        if (!istouch){
+            dispatch(usingflag({index1,index2}));
+            console.log('правый клик мыши');
+        }
     }
     function LeftClickHandler(index1:number , index2:number):void{
+        if (!istouch){
         dispatch(checkfragment({index1,index2}));
+        console.log('левый клик мыши');
+        }
+    }
+
+    function touchhandler(event:React.TouchEvent<HTMLDivElement>,index1:number,index2:number){
+        let datestart = new Date();
+        let box = event.target;
+        box.addEventListener("touchend",touchend);
+
+        function touchend(){
+            let dateend = new Date();
+            let difference = dateend.getTime()-datestart.getTime();
+
+            if (difference<300){
+                dispatch(checkfragment({index1,index2}));
+            }else{
+                dispatch(usingflag({index1,index2}));
+            }
+
+            box.removeEventListener("touchend",touchend);
+        }
     }
 
     let res = field.map((arr, index1)=>{
@@ -40,6 +60,7 @@ export default function Gameblock():JSX.Element{
             return <div 
             onClick={()=>LeftClickHandler(index1,index2)}
             onContextMenu={(event)=>RightClickHandler(event,index1,index2)} 
+            onTouchStart={(event)=>touchhandler(event,index1,index2)}
             className={style.minibox} key={index2}>
                 <MiniBlock index1={index1} index2={index2}/>
             </div>

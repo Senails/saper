@@ -9,4 +9,7 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    @media (max-width: 1000px) {
+        transform: rotate(-90deg);
+    }
 }
