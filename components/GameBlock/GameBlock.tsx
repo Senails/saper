@@ -37,8 +37,8 @@ export default function Gameblock({istouch}):JSX.Element{
     }
     function touchhandler(event:React.TouchEvent<HTMLDivElement>,index1:number,index2:number){
         let datestart = new Date();
-        let startX = event.targetTouches[0].clientX;
-        let startY = event.targetTouches[0].clientY;
+        let startX = event.targetTouches[0].screenX;
+        let startY = event.targetTouches[0].screenY;
 
         let box = event.target;
 
@@ -62,8 +62,8 @@ export default function Gameblock({istouch}):JSX.Element{
         }
 
         function touchmove(event:TouchEvent){
-            let endtX = event.targetTouches[0].clientX;
-            let endtY = event.targetTouches[0].clientY;
+            let endtX = event.targetTouches[0].screenX;
+            let endtY = event.targetTouches[0].screenY;
 
             let differentX = endtX - startX;
             let differentY = endtY - startY;
