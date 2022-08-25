@@ -73,7 +73,7 @@ export default function Gameblock({istouch}):JSX.Element{
 
             let res = (rexX**2 + rexY**2)**0.5;
 
-            if (res>=30){
+            if (res>=15){
                 box.removeEventListener("touchend",touchend);
                 box.removeEventListener("touchmove",touchmove);
             }
