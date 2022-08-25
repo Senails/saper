@@ -37,14 +37,15 @@ export default function Gameblock({istouch}):JSX.Element{
     }
     function touchhandler(event:React.TouchEvent<HTMLDivElement>,index1:number,index2:number){
         let datestart = new Date();
-        let startX = event.targetTouches[0].screenX;
-        let startY = event.targetTouches[0].screenY;
+        // let startX = event.targetTouches[0].screenX;
+        // let startY = event.targetTouches[0].screenY;
 
         let box = event.target;
 
         box.addEventListener("touchend",touchend);
-        box.addEventListener("touchmove",touchmove);
+        // box.addEventListener("touchmove",touchmove);
 
+        window.addEventListener('resize',resize);
         function touchend(){
             let dateend = new Date();
             let difference = dateend.getTime()-datestart.getTime();
@@ -58,25 +59,31 @@ export default function Gameblock({istouch}):JSX.Element{
             }
 
             box.removeEventListener("touchend",touchend);
-            box.removeEventListener("touchmove",touchmove);
+            window.removeEventListener('resize',resize);
+            // box.removeEventListener("touchmove",touchmove);
         }
 
-        function touchmove(event:TouchEvent){
-            let endtX = event.targetTouches[0].screenX;
-            let endtY = event.targetTouches[0].screenY;
+        // function touchmove(event:TouchEvent){
+        //     let endtX = event.targetTouches[0].screenX;
+        //     let endtY = event.targetTouches[0].screenY;
 
-            let differentX = endtX - startX;
-            let differentY = endtY - startY;
+        //     let differentX = endtX - startX;
+        //     let differentY = endtY - startY;
 
-            let rexX = (differentX**2)**0.5;
-            let rexY = (differentY**2)**0.5;
+        //     let rexX = (differentX**2)**0.5;
+        //     let rexY = (differentY**2)**0.5;
 
-            let res = (rexX**2 + rexY**2)**0.5;
+        //     let res = (rexX**2 + rexY**2)**0.5;
 
-            if (res>=15){
-                box.removeEventListener("touchend",touchend);
-                box.removeEventListener("touchmove",touchmove);
-            }
+        //     if (res>=15){
+        //         box.removeEventListener("touchend",touchend);
+        //         box.removeEventListener("touchmove",touchmove);
+        //     }
+        // }
+
+        function resize(){
+            box.removeEventListener("touchend",touchend);
+            window.removeEventListener('resize',resize);
         }
     }
 
