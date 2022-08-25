@@ -51,12 +51,10 @@ export default function Gameblock({istouch}):JSX.Element{
             let dateend = new Date();
             let difference = dateend.getTime()-datestart.getTime();
 
-            if (difference<500){
-                if (difference<220){
-                    dispatch(checkfragment({index1,index2}));
-                }else{
-                    dispatch(usingflag({index1,index2}));
-                }
+            if (difference<220){
+                dispatch(checkfragment({index1,index2}));
+            }else{
+                dispatch(usingflag({index1,index2}));
             }
 
             box.removeEventListener("touchend",touchend);
