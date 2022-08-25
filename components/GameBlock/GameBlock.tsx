@@ -50,7 +50,7 @@ export default function Gameblock({istouch}):JSX.Element{
             let difference = dateend.getTime()-datestart.getTime();
 
             if (difference<500){
-                if (difference<200){
+                if (difference<300){
                     dispatch(checkfragment({index1,index2}));
                 }else{
                     dispatch(usingflag({index1,index2}));
