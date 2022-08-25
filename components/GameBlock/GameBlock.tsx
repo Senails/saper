@@ -35,14 +35,13 @@ export default function Gameblock({istouch}):JSX.Element{
         console.log('левый клик мыши');
         }
     }
-
     function touchhandler(event:React.TouchEvent<HTMLDivElement>,index1:number,index2:number){
         let datestart = new Date();
         let startX = event.targetTouches[0].clientX;
         let startY = event.targetTouches[0].clientY;
 
         let box = event.target;
-        
+
         box.addEventListener("touchend",touchend);
         box.addEventListener("touchmove",touchmove);
 
