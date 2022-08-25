@@ -127,6 +127,13 @@ export const GameSlice = createSlice({
                                             if (state.field[i][j]==='b'){
                                                 state.statusfield[index1][index2]='o';
                                                 state.statusgame='end';
+                                                for(let i=0;i<num1;i++){
+                                                    for(let j=0; j<num2; j++){
+                                                        if (state.statusfield[i][j]!=='z'){
+                                                            state.statusfield[i][j]='o';
+                                                        }
+                                                    }
+                                                }
                                                 state.verdict='lose';
                                                 state.bomb = {index1:i,index2:j};
                                             }
@@ -141,7 +148,6 @@ export const GameSlice = createSlice({
                         }
 
                  
-
                     }else{
                         state.statusfield[index1][index2]='o';
                     }
