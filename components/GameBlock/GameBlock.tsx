@@ -49,8 +49,8 @@ export default function Gameblock({istouch}):JSX.Element{
             let dateend = new Date();
             let difference = dateend.getTime()-datestart.getTime();
 
-            if (difference<500){
-                if (difference<50){
+            if (difference<600){
+                if (difference<100){
                     dispatch(checkfragment({index1,index2}));
                 }else{
                     dispatch(usingflag({index1,index2}));
@@ -73,7 +73,7 @@ export default function Gameblock({istouch}):JSX.Element{
 
             let res = (rexX**2 + rexY**2)**0.5;
 
-            if (res>=15){
+            if (res>=5){
                 box.removeEventListener("touchend",touchend);
                 box.removeEventListener("touchmove",touchmove);
             }
